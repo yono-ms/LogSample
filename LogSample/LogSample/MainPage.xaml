@@ -1,16 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="LogSample.MainPage">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Class="LogSample.MainPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    x:Name="contentPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+    <StackLayout
+        BindingContext="{x:Reference contentPage}">
+        <Label Text="NLog via ILogger." FontSize="Title" HorizontalOptions="Center"/>
+        <Label Text="{Binding FullPath, Mode=OneWay}"/>
+        <Button Text="Initialize" Command="{Binding CommandInit}"/>
+        <Button Text="Log Critical" Command="{Binding CommandLog}" CommandParameter="Critical"/>
+        <Button Text="Log Error" Command="{Binding CommandLog}" CommandParameter="Error"/>
+        <Button Text="Log Warning" Command="{Binding CommandLog}" CommandParameter="Warning"/>
+        <Button Text="Log Information" Command="{Binding CommandLog}" CommandParameter="Information"/>
+        <Button Text="Log Debug" Command="{Binding CommandLog}" CommandParameter="Debug"/>
+        <Button Text="Log Trace" Command="{Binding CommandLog}" CommandParameter="Trace"/>
     </StackLayout>
 
 </ContentPage>
